@@ -3,13 +3,11 @@ package main
 import "fmt"
 
 func main() {
-
 	arr := []int{1, 2, 3, 4, 1, 2, 6, 7, 8}
 	fmt.Println(findDuplicatesInArray(arr))
 }
 
 func findDuplicatesInArray(arr []int) []int {
-
 	seen := make(map[int]bool)
 	sli := []int{}
 

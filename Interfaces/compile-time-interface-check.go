@@ -26,8 +26,8 @@ type LocalArtifactCache interface {
 
 /*
 🧠 What Does It Do?
-Type Assertion: The var _ Cache = &MemoryCache{} statement is assigning a pointer to an FSCache instance (&MemoryCache{}) to a variable of type Cache.
-Compile-Time Check: If FSCache does not implement all the methods defined in the Cache interface (which includes both ArtifactCache and LocalArtifactCache), the code will fail to compile.
+Type Assertion: The var _ Cache = &MemoryCache{} statement is assigning a pointer to an MemoryCache instance (&MemoryCache{}) to a variable of type Cache.
+Compile-Time Check: If MemoryCache does not implement all the methods defined in the Cache interface (which includes both ArtifactCache and LocalArtifactCache), the code will fail to compile.
 Zero Value: It does not create any object at runtime—this is purely a type-checking mechanism.
 */
 var _ Cache = &MemoryCache{}
