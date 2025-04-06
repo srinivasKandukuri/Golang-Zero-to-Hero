@@ -25,8 +25,8 @@ import (
 
 func main() {
 
-	str1 := "listen"
-	str2 := "silent"
+	str1 := "car"
+	str2 := "tac"
 
 	fmt.Printf("given strings are anagram %t", isAnagram2(str1, str2))
 }
@@ -67,7 +67,6 @@ func isAnagram2(str1, str2 string) bool {
 			return false
 		}
 	}
-
 	fmt.Printf("map %v\n", countmap)
 
 	return true
