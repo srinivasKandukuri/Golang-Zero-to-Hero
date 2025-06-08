@@ -7,36 +7,39 @@ import (
 )
 
 func main() {
-	numberOfJobs := 5
-	workers := 2
-	jobs := make(chan int, 5)
-	results := make(chan int, 5)
+	Jobs()
+}
+
+func Jobs() {
+	numberOfJobs := 20
+	numberOfWorkers := 2
+
+	jobs := make(chan int, numberOfJobs)
 
 	var wg sync.WaitGroup
-	for i := 1; i <= workers; i++ {
+
+	for i := 0; i <= numberOfWorkers; i++ {
 		wg.Add(1)
-		go func(id int) {
-			defer wg.Done()
-			for j := range jobs {
-				fmt.Println("worker", i, "job ", j)
-				time.Sleep(2 * time.Second)
-				results <- j * 2
-			}
-		}(i)
+		fmt.Println("Starting worker", i)
+		go worker1(i, &wg, jobs)
 	}
 
-	//send 5 jobs to channel
-	for i := 1; i <= numberOfJobs; i++ {
-		jobs <- i
+	for j := 1; j <= numberOfJobs; j++ {
+		fmt.Println("Job", j)
+		jobs <- j
 	}
+
 	close(jobs)
+	wg.Wait()
 
-	go func() {
-		wg.Wait()
-		close(results)
-	}()
+}
 
-	for res := range results {
-		fmt.Println("result", res)
+func worker1(i int, wg *sync.WaitGroup, jobs <-chan int) {
+	fmt.Println("worker", i)
+	defer wg.Done()
+
+	for j := range jobs {
+		fmt.Println("worker", i, "job ", j)
+		time.Sleep(2 * time.Second)
 	}
 }

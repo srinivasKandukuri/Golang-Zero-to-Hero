@@ -7,6 +7,7 @@ import (
 
 func main() {
 	ctx := context.WithValue(context.Background(), "userId", 14)
+
 	processRequest(ctx)
 }
 
