@@ -80,10 +80,12 @@ func main() {
 
 */
 /*
-The sync.RWMutex in Go is a read-write mutex (mutual exclusion lock) that provides a way to safely manage concurrent access to shared data. It is part of Go's sync package and is used to prevent data races.
+The sync.RWMutex in Go is a read-write mutex (mutual exclusion lock) that provides a way to safely manage concurrent access to shared data.
+It is part of Go's sync package and is used to prevent data races.
 
 ✅ 1. What Is a Mutex?
-A mutex (short for mutual exclusion) is a synchronization primitive used to protect shared resources from being accessed by multiple goroutines at the same time.
+A mutex (short for mutual exclusion) is a synchronization primitive used to protect shared resources from
+being accessed by multiple goroutines at the same time.
 
 In simple terms:
 
