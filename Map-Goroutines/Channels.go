@@ -13,6 +13,8 @@ func main() {
 	// sending value to channel
 	ch <- 1
 
+	ch <- 1
+
 	// receive value from channel
 	val := <-ch
 	fmt.Println(val)

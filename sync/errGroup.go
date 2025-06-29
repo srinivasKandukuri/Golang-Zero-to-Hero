@@ -13,71 +13,92 @@ import (
 	"golang.org/x/sync/errgroup"
 )
 
-func main() {
-	urls := []string{
-		"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-		"https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-zip-file.zip",
-	}
-	targetDir := "./downloads"
-	os.MkdirAll(targetDir, 0755)
+// call http
+// download the file
+// create local dir
+// save the file in local dir
+// return
+func fetchURL(ctx context.Context, url string, id int, outdir string) error {
 
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-
-	defer cancel()
-	g, ctx := errgroup.WithContext(ctx)
-
-	for _, url := range urls {
-		u := url
-		g.Go(func() error {
-			return downloadFile(ctx, u, targetDir)
-		})
+	res, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return err
 	}
 
-	if err := g.Wait(); err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println("Done")
-	}
-}
+	client := http.Client{Timeout: 5 * time.Second}
 
-func downloadFile(ctx context.Context, url string, targetDir string) error {
-	start := time.Now()
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	resp, err := client.Do(res)
 
 	if err != nil {
-		fmt.Println(err)
-	}
-
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		fmt.Println(err)
+		return err
 	}
 
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("bad status for %s: %s", url, resp.Status)
+		return fmt.Errorf("unexpected status %s : %d", url, resp.StatusCode)
 	}
 
-	filePath := filepath.Join(targetDir, getFileName(url))
-	out, err := os.Create(filePath)
+	tokens := strings.Split(url, "/")
+	filePath := tokens[len(tokens)-1]
+
+	file := filepath.Join(outdir, filePath)
+	filedir, err := os.Create(fmt.Sprintf("%s_%d", file, id))
 	if err != nil {
-		return fmt.Errorf("creating file: %w", err)
+		return err
 	}
-	defer out.Close()
 
-	_, err = io.Copy(out, resp.Body)
+	defer func(filedir *os.File) {
+		err := filedir.Close()
+		if err != nil {
+
+		}
+	}(filedir)
+
+	_, err = io.Copy(filedir, resp.Body)
+
 	if err != nil {
-		return fmt.Errorf("saving file: %w", err)
+		return err
 	}
-
-	fmt.Println("✅ Downloaded:", filePath)
-	fmt.Println("<UNK> Took:", time.Since(start))
+	fmt.Printf("Sucessfully downloaded %s\n", filedir.Name())
 	return nil
 }
 
-// getFileName extracts filename from URL
-func getFileName(url string) string {
-	tokens := strings.Split(url, "/")
-	return tokens[len(tokens)-1]
+func main() {
+	urls := []string{
+		"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+		"https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-zip-file.zip",
+		"https://nonexistent.example.com",
+	}
+	outdir := "download"
+	err := os.MkdirAll(outdir, 0755)
+
+	if err != nil {
+		fmt.Errorf("failed to create folder")
+	}
+
+	// using err group download above urls parallel using go routines
+	// use context timeout
+	// download the files from given url
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	g, gtx := errgroup.WithContext(ctx)
+
+	for id, url := range urls {
+
+		id := id
+		url := url
+
+		g.Go(func() error {
+			return fetchURL(gtx, url, id, outdir)
+		})
+	}
+
+	if err := g.Wait(); err != nil {
+		fmt.Printf("Error occured %v\n", err)
+	} else {
+		fmt.Println("all urls fetched sucessfully")
+	}
 }
