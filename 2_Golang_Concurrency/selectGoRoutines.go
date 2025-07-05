@@ -17,7 +17,7 @@ func main() {
 			fmt.Println(num)
 		case <-time.After(2 * time.Second):
 			i++
-			fmt.Println("1 sec")
+			fmt.Println("current i value", i)
 			if i == 10 {
 				return
 			}
@@ -26,8 +26,7 @@ func main() {
 
 }
 
-func worker(ch chan int) {
-	time.Sleep(3 * time.Second)
+func worker(ch chan<- int) {
 	ch <- 1
 	time.Sleep(1 * time.Second)
 }
