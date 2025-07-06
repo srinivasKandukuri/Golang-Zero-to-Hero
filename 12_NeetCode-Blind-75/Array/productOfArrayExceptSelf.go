@@ -2,6 +2,9 @@ package main
 
 import "fmt"
 
+/*
+https://leetcode.com/problems/product-of-array-except-self/description/
+*/
 func main() {
 	arr := []int{1, 2, 3, 4}
 	fmt.Println(productExceptSelf(arr))

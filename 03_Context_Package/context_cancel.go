@@ -72,7 +72,7 @@ func main() {
 		defer wg.Done()
 		worker(ch, ctx)
 	}()
-	time.Sleep(10 * time.Second)
+	time.Sleep(3 * time.Second)
 	cancel()
 	res := <-ch
 	fmt.Println("main received ", res.data)
@@ -97,7 +97,7 @@ func worker(ch chan response, ctx context.Context) {
 			if counter == 5 {
 				fmt.Println("worker : finished work")
 				ch <- response{data: 1, err: ctx.Err()}
-
+				return
 			}
 		}
 	}
