@@ -1,0 +1,46 @@
+goos: linux
+goarch: amd64
+pkg: Golang-Zero-to-Hero/15_GoBenchmark/01_
+cpu: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz
+BenchmarkAdd-8     	1000000000	         0.4110 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.4087 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.4125 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.4026 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.4594 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.4002 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.4129 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.4041 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.4013 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.4135 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.3913 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.3973 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.3991 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.3935 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.3946 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.4263 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.4128 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.3968 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.3849 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAdd-8     	1000000000	         0.3889 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.3834 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.3884 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.4045 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.3865 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.4063 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.5898 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.7036 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.5086 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.4211 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.4190 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.4086 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.4332 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.5748 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.4246 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.3950 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.4025 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.3852 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.3944 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.4120 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAlloc-8   	1000000000	         0.4050 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	Golang-Zero-to-Hero/15_GoBenchmark/01_	19.367s

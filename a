@@ -1,0 +1,5 @@
+
+select c.customerid,c.customer_name, c.country, sum(o.total_amount) from cusomters c
+inner join orders o on o.cusomer_id = c.cusomerid
+where order_date >2025
+group by cusomer_id

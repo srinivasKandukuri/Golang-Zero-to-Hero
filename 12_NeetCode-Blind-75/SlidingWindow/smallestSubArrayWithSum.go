@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 /*
@@ -62,15 +63,19 @@ func smallestSubArraySum(arr []int, s int) int {
 	return minLength
 }
 
-func smallestSubArraySumOpt(arr []int, s int) int {
+func smallestSubArraySumOpt(arr []int, target int) int {
 	n := len(arr)
-	minLength := n + 1
+	minLength := math.MaxInt32
 
 	left := 0
 	sum := 0
+
 	for right := 0; right < n; right++ {
+
+		// expand window
 		sum += arr[right]
-		for sum >= s {
+
+		for sum >= target {
 			if right-left+1 < minLength {
 				minLength = right - left + 1
 			}
@@ -78,7 +83,8 @@ func smallestSubArraySumOpt(arr []int, s int) int {
 			left++
 		}
 	}
-	if minLength == n+1 {
+
+	if minLength == math.MaxInt32 {
 		return 0
 	}
 	return minLength

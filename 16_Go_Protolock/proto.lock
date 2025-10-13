@@ -1,0 +1,74 @@
+{
+  "definitions": [
+    {
+      "protopath": "demo.proto",
+      "def": {
+        "enums": [
+          {
+            "name": "HealthCheckResponse.ServingStatus",
+            "enum_fields": [
+              {
+                "name": "UNKNOWN"
+              },
+              {
+                "name": "SERVING",
+                "integer": 1
+              },
+              {
+                "name": "NOT_SERVING",
+                "integer": 2
+              },
+              {
+                "name": "SERVICE_UNKNOWN",
+                "integer": 3
+              }
+            ]
+          }
+        ],
+        "messages": [
+          {
+            "name": "HealthCheckRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "service",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "HealthCheckResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "ServingStatus"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "Health",
+            "rpcs": [
+              {
+                "name": "Check",
+                "in_type": "HealthCheckRequest",
+                "out_type": "HealthCheckResponse"
+              },
+              {
+                "name": "Watch",
+                "in_type": "HealthCheckRequest",
+                "out_type": "HealthCheckResponse",
+                "out_streamed": true
+              }
+            ]
+          }
+        ],
+        "package": {
+          "name": "grpc.health.v1"
+        }
+      }
+    }
+  ]
+}
